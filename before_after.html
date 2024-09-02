@@ -3,41 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Box with Before and After</title>
+    <title>Box with Before and After Separately</title>
     <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: wheat;
+        }
+
+        .box-container {
+            display: flex;
+            gap: 20px;
+        }
+
         .box {
-            position: relative;
+            display: inline-block;
             width: 150px;
             height: 150px;
-            background-color:gray;
-            border: 2px solid red;
-            margin: 50px;
-        }
-
-        .box::before,
-        .box::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            width: calc(100% + 20px); 
-            height: calc(100% + 20px); 
-            border: 2px solid red;
+            background-color:violet; 
+            border: 2px solid black;
             box-sizing: border-box;
-            pointer-events: none;
+            position: relative;
         }
-
-        .box::before {
-            z-index: -1;
+        .box-with-before::before {
+            content: '';
+            display: block;
+            width: calc(100% + 10px);
+            height: calc(100% + 10px);
+            border: 3px dashed red;
+            margin: -5px; 
+            box-sizing: border-box;
         }
-
-        .box::after {
-            border-color: red;
-            z-index: -2;
+        .box-with-after::after {
+            content: '';
+            display: block;
+            width: calc(100% + 10px);
+            height: calc(100% + 10px);
+            border: 3px solid red;
+            margin: -5px;
+            box-sizing: border-box
         }
     </style>
 </head>
 <body>
-    <div class="box"></div>
+    <div class="box-container">
+        <div class="box box-with-before"></div>
+        <div class="box box-with-after"></div>
+    </div>
 </body>
 </html>
